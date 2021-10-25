@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NoteApp
 {
+    //com
     /// <summary>
     /// Тип данных перечисления категорий заметок.
     /// </summary>
