@@ -15,18 +15,22 @@ namespace NoteApp
         /// Категория заметки.
         /// </summary>
         private Category _category;
+
         /// <summary>
         /// Имя заметки.
         /// </summary>
         private string _name = "Untitled";
+
         /// <summary>
         /// Текст заметки.
         /// </summary>
         private string _textNote = "";
+
         /// <summary>
         /// Дата и время создания заметки
         /// </summary>
         private DateTime _dateCreation;
+
         /// <summary>
         /// Дата и время последнего изменения
         /// </summary>

@@ -39,11 +39,10 @@ namespace NoteApp
             //environment.getfolderpath
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                //Вызываем сериализацию и передаем объект, который хотим сериализовать
+                //Вызываем десериализацию
                 serializer.Serialize(writer, project);
             }
         }
-
 
         /// <summary>
         /// Метод загрузки данных из файла с расширением json
@@ -53,13 +52,12 @@ namespace NoteApp
             Project project;
             try
             {
-                //Создаём экземпляр сериализатора
                 JsonSerializer serializer = new JsonSerializer();
                 //Открываем поток для чтения из файла с указанием пути
                 using (StreamReader sr = new StreamReader(nameFile))
                 using (JsonReader reader = new JsonTextReader(sr))
                 {
-                    //Вызываем десериализацию и явно преобразуем результат в целевой тип данных
+                    //Вызываем десериализацию
                     project = serializer.Deserialize<Project>(reader);
                 }
                 return project;
@@ -71,12 +69,11 @@ namespace NoteApp
                 return project;
             }
         }
-
         private static void CreatDirectory()
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp";
             if (!System.IO.Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            Directory.CreateDirectory(path);
         }
     }
 }
