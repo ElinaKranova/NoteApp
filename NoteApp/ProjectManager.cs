@@ -36,7 +36,6 @@ namespace NoteApp
 
             //Открываем поток для записи в файл с указанием пути
             using (StreamWriter sw = new StreamWriter(nameFile))
-            //environment.getfolderpath
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 //Вызываем десериализацию
