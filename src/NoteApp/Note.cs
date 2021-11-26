@@ -14,7 +14,7 @@ namespace NoteApp
         /// <summary>
         /// Категория заметки.
         /// </summary>
-        private Category _category;
+        private NoteCategory _category;
 
         /// <summary>
         /// Имя заметки.
@@ -24,7 +24,7 @@ namespace NoteApp
         /// <summary>
         /// Текст заметки.
         /// </summary>
-        private string _textNote = "";
+        private string _text = "";
 
         /// <summary>
         /// Дата и время создания заметки
@@ -47,10 +47,16 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и задает категорию заметок.
         /// </summary>
-        public Category Category
+        public NoteCategory Category
         {
-            get { return _category; }
-            set { _category = (Category)Enum.GetValues(typeof(Category)).GetValue((int)value); }
+            get 
+            { 
+                return _category;
+            }
+            set 
+            { 
+                _category = (NoteCategory)Enum.GetValues(typeof(NoteCategory)).GetValue((int)value); 
+            }
         }
 
         /// <summary>
@@ -58,7 +64,10 @@ namespace NoteApp
         /// </summary>
         public string Name
         {
-            get { return _name; }
+            get 
+            {
+                return _name; 
+            }
             set
             {
                 if(value.Length == 0)
@@ -79,27 +88,42 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и задает текст заметки.
         /// </summary>
-        public string TextNote
+        public string Text
         {
-            get { return _textNote; }
-            set { _textNote = value; }
+            get 
+            {
+                return _text;
+            }
+            set 
+            { 
+                _text = value; 
+            }
         }
 
         /// <summary>
         /// Возвращает дату создани заметки.
         /// </summary>
-        public DateTime DateCreation
+        public DateTime CreatedAt
         {
-            get { return _dateCreation; }
+            get 
+            {
+                return _dateCreation; 
+            }
         }
 
         /// <summary>
         /// Возвращает и задает дату последнего изменения заметки
         /// </summary>
-        public DateTime TimeLastEdit
+        public DateTime ModifiedAt
         {
-            get { return _timeLastEdit; }
-            set { _timeLastEdit = DateTime.Now; }
+            get 
+            {
+                return _timeLastEdit; 
+            }
+            set 
+            {
+                _timeLastEdit = DateTime.Now; 
+            }
         }
 
         /// <summary>

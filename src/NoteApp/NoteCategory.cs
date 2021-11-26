@@ -9,7 +9,7 @@ namespace NoteApp
     /// <summary>
     /// Тип данных перечисления категорий заметок.
     /// </summary>
-    public enum Category
+    public enum NoteCategory
     {
         Job,
         Home,
