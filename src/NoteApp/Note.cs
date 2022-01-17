@@ -22,11 +22,6 @@ namespace NoteApp
         private string _name = "Untitled";
 
         /// <summary>
-        /// Текст заметки.
-        /// </summary>
-        private string _text = "";
-
-        /// <summary>
         /// Дата и время создания заметки
         /// </summary>
         private DateTime _dateCreation;
@@ -88,17 +83,7 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и задает текст заметки.
         /// </summary>
-        public string Text
-        {
-            get 
-            {
-                return _text;
-            }
-            set 
-            { 
-                _text = value; 
-            }
-        }
+        public string Text { get; set; }
 
         /// <summary>
         /// Возвращает дату создани заметки.
