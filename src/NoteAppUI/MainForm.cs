@@ -32,15 +32,15 @@ namespace NoteAppUI
         public MainForm()
         {
             InitializeComponent();
-            InitializationComboBox();
+            InitComboBox();
             _project = ProjectManager.LoadData(ProjectManager.DefaultFilename);
-            FillingListBox();
+            UpdateNoteListBox();
         }
 
         /// <summary>
         /// Метод заполнение ComboBoxCategory.
         /// </summary>
-        private void InitializationComboBox()
+        private void InitComboBox()
         {
             var valuesAsList = Enum.GetValues(typeof(NoteCategory)).Cast<Object>().ToArray();
             comboBoxCategory.Items.Add("All");
@@ -51,8 +51,6 @@ namespace NoteAppUI
         /// <summary>
         /// Метод удаления заметки,
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void RemoveNote()
         {
             if (listBoxNote.SelectedItem != null)
@@ -65,14 +63,16 @@ namespace NoteAppUI
                 if (result == DialogResult.OK)
                 {
                     foreach (var note in _project.Notes)
+                    {
                         if (_currentNotes[listBoxNote.SelectedIndex] == note)
                         {
                             _currentNotes.RemoveAt(listBoxNote.SelectedIndex);
                             _project.Notes.Remove(note);
                             break;
                         }
+                    }
                     ProjectManager.SaveData(_project, ProjectManager.DefaultFilename);
-                    FillingListBox();
+                    UpdateNoteListBox();
                 }
             }
             else
@@ -82,50 +82,42 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Метод создания новой формы AddEditeNote,
+        /// Метод создания новой формы NoteForm,
         /// для редактирования заметки.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void EditNote()
         {
             if (listBoxNote.SelectedItem != null)
             {
                 foreach (var note in _project.Notes)
+                {
                     if (_currentNotes[listBoxNote.SelectedIndex] == note)
                     {
-                        LoadingForm(new NoteForm(note));
+                        new NoteForm(note).ShowDialog();
                         break;
                     }
-                FillingListBox();
+                }
+                _project.Notes = _project.SortNotes(_project.Notes);
+                UpdateNoteListBox();
             }
             else
             {
                 MessageBox.Show("Note not selected");
             }
         }
+        
 
         /// <summary>
         /// Метод создания новой формы AddEditeNote,
         /// для добавления новой заметки.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void AddNote()
         {
             Note note = new Note();
-            LoadingForm(new NoteForm(note));
+            new NoteForm(note).ShowDialog();
             _project.Notes.Add(note);
-            FillingListBox();
-        }
-
-        /// <summary>
-        /// Метод загрузки формы.
-        /// </summary>
-        /// <param name="form">Загружаемая форма.</param>
-        private void LoadingForm(Form form)
-        {
-            form.ShowDialog();
+            _project.Notes = _project.SortNotes(_project.Notes);
+            UpdateNoteListBox();
         }
 
         /// <summary>
@@ -133,29 +125,34 @@ namespace NoteAppUI
         /// которые относятся к текущей категории в
         /// comboBoxCategory
         /// </summary>
-        private void FillingListBox()
+        private void UpdateNoteListBox()
         {
             if (_project != null)
             {
-                ClearingAllFields();
+                ClearAllFields();
                 listBoxNote.Items.Clear();
                 _currentNotes = new List<Note>();
                 for (int i = 0; i < _project.Notes.Count; i++)
                 {
-                    if (comboBoxCategory.SelectedItem.ToString() == "All" || 
+                    if (comboBoxCategory.SelectedItem.ToString() == "All" ||
                         _project.Notes[i].Category == (NoteCategory)comboBoxCategory.SelectedItem)
                     {
                         listBoxNote.Items.Add(_project.Notes[i].Name);
                         _currentNotes.Add(_project.Notes[i]);
                     }
                 }
+                if (listBoxNote.Items.Count >= 1)
+                {
+                    listBoxNote.SetSelected(0, true);
+                }
             }
         }
+
 
         /// <summary>
         /// Метод очищения всех информационных полей о заметке.
         /// </summary>
-        private void ClearingAllFields()
+        private void ClearAllFields()
         {
             textCurrentNote.Text = "";
             labelNameCurrentNote.Text = "";
@@ -191,6 +188,27 @@ namespace NoteAppUI
                 labelNameCurrentCategory.Text = Enum.GetName(typeof(NoteCategory), tempNote.Category);
             }
         }
+        private void CurrentCategory()
+        {
+            if (comboBoxCategory.SelectedItem.ToString() == "All")
+            {
+                UpdateNoteListBox();
+            }
+            else
+            {
+                List<Note> findCategory = new List<Note>();
+                var selected = (NoteCategory)comboBoxCategory.SelectedItem;
+                foreach (var note in _project.Notes)
+                {
+                    if (note.Category == selected)
+                    {
+                        findCategory.Add(note);
+                    }
+                }
+                UpdateNoteListBox();
+            }
+        }
+
         private void listBoxNote_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -199,9 +217,9 @@ namespace NoteAppUI
             }
         }
 
-        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e) => FillingListBox();
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e) => UpdateNoteListBox();
 
-        private void helpToolStripMenuItem1_Click(object sender, EventArgs e) => LoadingForm(new About());
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e) => new About().ShowDialog();
 
         private void ImageAddNote_Click(object sender, EventArgs e) => AddNote();
 
@@ -213,31 +231,9 @@ namespace NoteAppUI
 
         private void ImageRemoveNote_Click(object sender, EventArgs e) => RemoveNote();
 
-
         private void removeNoteToolStripMenuItem_Click(object sender, EventArgs e) => RemoveNote();
 
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateCreation_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelNameCurrentCategory_Click(object sender, EventArgs e)
+        private void MainForm_Load_1(object sender, EventArgs e)
         {
 
         }

@@ -33,7 +33,7 @@ namespace NoteAppUI
         public NoteForm(Note note)
         {
             InitializeComponent();
-            InitializationComboBox();
+            InitComboBox();
             _note = note;
             _tempNote = (Note)_note.Clone();
             _tempNote.ModifiedAt = DateTime.Now;
@@ -45,7 +45,7 @@ namespace NoteAppUI
         /// <summary>
         /// Метод заполнение ComboBoxCategory.
         /// </summary>
-        private void InitializationComboBox()
+        private void InitComboBox()
         {
             var valuesAsList = Enum.GetValues(typeof(NoteCategory)).Cast<Object>().ToArray();
             comboBoxCategory.Items.AddRange(valuesAsList);
@@ -72,6 +72,7 @@ namespace NoteAppUI
                 _note.Name = _tempNote.Name;
                 _note.Text = _tempNote.Text;
                 _note.Category = _tempNote.Category;
+                _note.ModifiedAt = DateTime.Now;
                 Close();
             }
             catch (Exception exeption)
@@ -97,16 +98,6 @@ namespace NoteAppUI
         {
             if(_tempNote != null)
                 _tempNote.Category = (NoteCategory)comboBoxCategory.SelectedItem;
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void NoteForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

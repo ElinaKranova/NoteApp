@@ -189,7 +189,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(526, 455);
             this.tableLayoutPanel5.TabIndex = 1;
-            this.tableLayoutPanel5.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel5_Paint);
             // 
             // labelNameCurrentNote
             // 
@@ -271,7 +270,6 @@
             this.dateCreation.Name = "dateCreation";
             this.dateCreation.Size = new System.Drawing.Size(87, 20);
             this.dateCreation.TabIndex = 8;
-            this.dateCreation.ValueChanged += new System.EventHandler(this.dateCreation_ValueChanged);
             // 
             // label2
             // 
@@ -323,7 +321,6 @@
             this.labelNameCurrentCategory.Size = new System.Drawing.Size(16, 24);
             this.labelNameCurrentCategory.TabIndex = 1;
             this.labelNameCurrentCategory.Text = "...";
-            this.labelNameCurrentCategory.Click += new System.EventHandler(this.labelNameCurrentCategory_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -345,7 +342,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(307, 455);
             this.tableLayoutPanel2.TabIndex = 0;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // tableLayoutPanel3
             // 
@@ -467,12 +463,13 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MinimumSize = new System.Drawing.Size(735, 498);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  NoteApp";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

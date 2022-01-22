@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteForm));
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxTextNote = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -80,6 +81,7 @@
             this.textBoxTextNote.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTextNote.Multiline = true;
             this.textBoxTextNote.Name = "textBoxTextNote";
+            this.textBoxTextNote.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxTextNote.Size = new System.Drawing.Size(505, 324);
             this.textBoxTextNote.TabIndex = 0;
             this.textBoxTextNote.TextChanged += new System.EventHandler(this.textBoxTextNote_TextChanged);
@@ -272,7 +274,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(525, 24);
             this.tableLayoutPanel2.TabIndex = 0;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // buttonOK
             // 
@@ -302,10 +303,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 453);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NoteForm";
             this.Text = "Editing note";
-            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
