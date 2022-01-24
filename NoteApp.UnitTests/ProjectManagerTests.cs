@@ -28,15 +28,15 @@ namespace ProjectTests
 			note1.Text = "dsa";
 			note1.Category = NoteCategory.Home;
 			example.Notes.Add(note1);
-			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\NoteAppTest";
 
 			//Act
 			ProjectManager.SaveData(example, path);
-			string fileName = path + @"/Notes.notes";
-			var expected = File.ReadAllText(fileName);
-			var actual = File.ReadAllText(fileName);
-			//Assert
-			Assert.AreEqual(actual, expected, "Сравнение сериализатора ProjectManager и встроенного.");
+			string fileName = path + "\\NoteAppTest";
+            var expected = File.ReadAllText(fileName);
+            var actual = File.ReadAllText(fileName);
+            //Assert
+            Assert.AreEqual(actual, expected, "Сравнение сериализатора ProjectManager и встроенного.");
 		}
 		[Test(Description = "Проверка десериализации")]
 		public void TestLoadFromFile_CorrectValue()
@@ -67,10 +67,6 @@ namespace ProjectTests
 			{
 				Assert.AreEqual(actual.Notes[i].Name, expected.Notes[i].Name,
 				  "Сравнение результата десериализованного созданного заголовка и ожидаемого");
-				//Assert.AreEqual(actual.Notes[i].Text, expected.Notes[i].Text,
-				//  "Сравнение результата десериализованного созданного текста и ожидаемого");
-				//Assert.AreEqual(actual.Notes[i].Category, expected.Notes[i].Category,
-				//  "Сравнение результата десериализованной созданной категории и ожидаемой");
 			}
 		}
 	}
