@@ -318,9 +318,10 @@
             this.labelNameCurrentCategory.AutoSize = true;
             this.labelNameCurrentCategory.Location = new System.Drawing.Point(63, 0);
             this.labelNameCurrentCategory.Name = "labelNameCurrentCategory";
-            this.labelNameCurrentCategory.Size = new System.Drawing.Size(16, 24);
+            this.labelNameCurrentCategory.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.labelNameCurrentCategory.Size = new System.Drawing.Size(60, 24);
             this.labelNameCurrentCategory.TabIndex = 1;
-            this.labelNameCurrentCategory.Text = "...";
+            this.labelNameCurrentCategory.Text = "Категория";
             // 
             // tableLayoutPanel2
             // 

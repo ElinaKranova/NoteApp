@@ -295,7 +295,7 @@
             this.buttonCancle.TabIndex = 9;
             this.buttonCancle.Text = "Cancel";
             this.buttonCancle.UseVisualStyleBackColor = true;
-            this.buttonCancle.Click += new System.EventHandler(this.buttonCancle_Click);
+            this.buttonCancle.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // NoteForm
             // 

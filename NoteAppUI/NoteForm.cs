@@ -19,27 +19,53 @@ namespace NoteAppUI
         /// <summary>
         /// Редактируемая заметка.
         /// </summary>
-        private Note _note;
+        private Note _note = new Note();
 
         /// <summary>
         /// Клон редактируемой заметки.
         /// </summary>
-        private Note _tempNote;
+        private Note _tempNote = new Note();
+
+        /// <summary>
+		///Для задания имени по умолчанию.
+		/// </summary>
+		private static int _defaultNameCount = 1;
+
+        public Note Note
+        {
+            get
+            {
+                _note.Text =textBoxTextNote.Text;
+                if (textBoxNameNote.Text == "")
+                {
+                    string noteName = "Untitled" + _defaultNameCount;
+                    _defaultNameCount++;
+                    textBoxNameNote.Text = noteName;
+                }
+                _note.Name = textBoxNameNote.Text;
+                _note.Category = (NoteCategory)comboBoxCategory.SelectedItem;
+                return _note;
+            }
+            set
+            {
+                if (value != null) 
+                {
+                    textBoxNameNote.Text = value.Name;
+                    value.ModifiedAt = DateTime.Now;
+                    textBoxTextNote.Text = value.Text;
+                    comboBoxCategory.SelectedItem = value.Category;
+                }
+            }
+        }
 
         /// <summary>
         /// Создает экземпляр AddEditNote добавления новой заметки.
         /// </summary>
-        /// <param name="project">Прокет, в котором хранятся заметки.</param>
-        public NoteForm(Note note)
+        /// <param name="project">Проект, в котором хранятся заметки.</param>
+        public NoteForm()
         {
             InitializeComponent();
             InitComboBox();
-            _note = note;
-            _tempNote = (Note)_note.Clone();
-            _tempNote.ModifiedAt = DateTime.Now;
-            comboBoxCategory.SelectedIndex = (int)_tempNote.Category;
-            textBoxNameNote.Text = _tempNote.Name;
-            textBoxTextNote.Text = _tempNote.Text;
         }
 
         /// <summary>
@@ -54,6 +80,7 @@ namespace NoteAppUI
 
         private void textBoxNameNote_TextChanged(object sender, EventArgs e)
         {
+
             try
             {
                 textBoxNameNote.BackColor = Color.White;
@@ -69,15 +96,16 @@ namespace NoteAppUI
         {
             try
             {
-                _note.Name = _tempNote.Name;
-                _note.Text = _tempNote.Text;
-                _note.Category = _tempNote.Category;
-                _note.ModifiedAt = DateTime.Now;
+                //_note.Name = _tempNote.Name;
+                //_note.Text = _tempNote.Text;
+                //_note.Category = _tempNote.Category;
+                //_note.ModifiedAt = DateTime.Now;
+                DialogResult = DialogResult.OK;
                 Close();
             }
-            catch (Exception exeption)
+            catch (Exception exception)
             {
-                MessageBox.Show(exeption.Message, "Input error",
+                MessageBox.Show(exception.Message, "Input error",
                                 MessageBoxButtons.OKCancel,
                                 MessageBoxIcon.Information);
             }
@@ -89,7 +117,7 @@ namespace NoteAppUI
                 _tempNote.Text = textBoxTextNote.Text;
         }
 
-        private void buttonCancle_Click(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             Close();
         }

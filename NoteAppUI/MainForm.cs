@@ -62,15 +62,9 @@ namespace NoteAppUI
                                                         MessageBoxIcon.Question); ;
                 if (result == DialogResult.OK)
                 {
-                    foreach (var note in _project.Notes)
-                    {
-                        if (_currentNotes[listBoxNote.SelectedIndex] == note)
-                        {
-                            _currentNotes.RemoveAt(listBoxNote.SelectedIndex);
-                            _project.Notes.Remove(note);
-                            break;
-                        }
-                    }
+                    _project.Notes.Remove(_currentNotes[listBoxNote.SelectedIndex]);
+                    _currentNotes.RemoveAt(listBoxNote.SelectedIndex);
+                    listBoxNote.Items.RemoveAt(listBoxNote.SelectedIndex);
                     ProjectManager.SaveData(_project, ProjectManager.DefaultFilename);
                     UpdateNoteListBox();
                 }
@@ -89,15 +83,15 @@ namespace NoteAppUI
         {
             if (listBoxNote.SelectedItem != null)
             {
-                foreach (var note in _project.Notes)
+                NoteForm noteForm = new NoteForm();
+                noteForm.Note = _currentNotes[listBoxNote.SelectedIndex];
+                DialogResult result = noteForm.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    if (_currentNotes[listBoxNote.SelectedIndex] == note)
-                    {
-                        new NoteForm(note).ShowDialog();
-                        break;
-                    }
+                    _project.Notes.RemoveAt(listBoxNote.SelectedIndex);
+                    _project.Notes.Insert(listBoxNote.SelectedIndex, noteForm.Note);
                 }
-                _project.Notes = _project.SortNotes(_project.Notes);
+                    _project.Notes = _project.SortNotes(_project.Notes);
                 UpdateNoteListBox();
             }
             else
@@ -105,7 +99,6 @@ namespace NoteAppUI
                 MessageBox.Show("Note not selected");
             }
         }
-        
 
         /// <summary>
         /// Метод создания новой формы AddEditeNote,
@@ -113,10 +106,14 @@ namespace NoteAppUI
         /// </summary>
         private void AddNote()
         {
-            Note note = new Note();
-            new NoteForm(note).ShowDialog();
-            _project.Notes.Add(note);
-            _project.Notes = _project.SortNotes(_project.Notes);
+            NoteForm noteForm = new NoteForm();
+            Note note = noteForm.Note;
+            DialogResult result = noteForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _project.Notes.Add(note);
+                _project.Notes = _project.SortNotes(_project.Notes);
+            }
             UpdateNoteListBox();
         }
 
@@ -171,42 +168,15 @@ namespace NoteAppUI
                 }
                 else
                 {
-                    foreach (var note in _project.Notes)
-                    {
-                        if (_currentNotes[listBoxNote.SelectedIndex] == note)
-                        {
-                            tempNote = note;
-                            break;
-                        }
-                    }
+                    tempNote = _currentNotes[listBoxNote.SelectedIndex];
                 }
-                labelNameCurrentNote.Text = tempNote.Name;
-                textCurrentNote.Text = tempNote.Text;
-                dateModifiend.Visible = dateCreation.Visible = true;
-                dateCreation.Value = tempNote.CreatedAt;
-                dateModifiend.Value = tempNote.ModifiedAt;
-                labelNameCurrentCategory.Text = Enum.GetName(typeof(NoteCategory), tempNote.Category);
             }
-        }
-        private void CurrentCategory()
-        {
-            if (comboBoxCategory.SelectedItem.ToString() == "All")
-            {
-                UpdateNoteListBox();
-            }
-            else
-            {
-                List<Note> findCategory = new List<Note>();
-                var selected = (NoteCategory)comboBoxCategory.SelectedItem;
-                foreach (var note in _project.Notes)
-                {
-                    if (note.Category == selected)
-                    {
-                        findCategory.Add(note);
-                    }
-                }
-                UpdateNoteListBox();
-            }
+            labelNameCurrentNote.Text = tempNote.Name;
+            textCurrentNote.Text = tempNote.Text;
+            dateModifiend.Visible = dateCreation.Visible = true;
+            dateCreation.Value = tempNote.CreatedAt;
+            dateModifiend.Value = tempNote.ModifiedAt;
+            labelNameCurrentCategory.Text = Enum.GetName(typeof(NoteCategory), tempNote.Category);
         }
 
         private void listBoxNote_KeyDown(object sender, KeyEventArgs e)
@@ -233,9 +203,5 @@ namespace NoteAppUI
 
         private void removeNoteToolStripMenuItem_Click(object sender, EventArgs e) => RemoveNote();
 
-        private void MainForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
