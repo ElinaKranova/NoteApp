@@ -21,7 +21,7 @@ namespace NoteApp.UnitTests
 			note.Category = NoteCategory.Home;
 			expected.Add(note);
 
-			//Testing
+			//Act
 			var project = new Project();
 			project.Notes.Add(note);
 			var actual = project.Notes;
