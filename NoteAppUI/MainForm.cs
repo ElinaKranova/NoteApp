@@ -107,11 +107,11 @@ namespace NoteAppUI
         private void AddNote()
         {
             NoteForm noteForm = new NoteForm();
-            Note note = noteForm.Note;
             DialogResult result = noteForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                _project.Notes.Add(note);
+                Note newNote = noteForm.Note;
+                _project.Notes.Add(newNote);
                 _project.Notes = _project.SortNotes(_project.Notes);
             }
             UpdateNoteListBox();

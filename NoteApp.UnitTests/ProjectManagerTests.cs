@@ -28,11 +28,12 @@ namespace ProjectTests
 			note1.Text = "dsa";
 			note1.Category = NoteCategory.Home;
 			example.Notes.Add(note1);
-			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\NoteAppTest";
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteAppTest";
 
 			//Act
 			ProjectManager.SaveData(example, path);
 			string fileName = path + "\\NoteAppTest";
+
             var expected = File.ReadAllText(fileName);
             var actual = File.ReadAllText(fileName);
             //Assert

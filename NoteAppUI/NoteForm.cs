@@ -26,11 +26,6 @@ namespace NoteAppUI
         /// </summary>
         private Note _tempNote = new Note();
 
-        /// <summary>
-		///Для задания имени по умолчанию.
-		/// </summary>
-		private static int _defaultNameCount = 1;
-
         public Note Note
         {
             get
@@ -38,8 +33,7 @@ namespace NoteAppUI
                 _note.Text =textBoxTextNote.Text;
                 if (textBoxNameNote.Text == "")
                 {
-                    string noteName = "Untitled" + _defaultNameCount;
-                    _defaultNameCount++;
+                    string noteName = "Untitled";
                     textBoxNameNote.Text = noteName;
                 }
                 _note.Name = textBoxNameNote.Text;
