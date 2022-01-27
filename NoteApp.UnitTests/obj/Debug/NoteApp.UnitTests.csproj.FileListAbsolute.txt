@@ -1,4 +1,3 @@
-C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\bin\Debug\ExpectedNoteApp.notes
 C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\bin\Debug\NoteApp.UnitTests.dll
 C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\bin\Debug\NoteApp.UnitTests.pdb
 C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\bin\Debug\NoteApp.dll
@@ -12,3 +11,4 @@ C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\obj\Debug\NoteApp.Unit
 C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\obj\Debug\NoteApp.UnitTests.csproj.CopyComplete
 C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\obj\Debug\NoteApp.UnitTests.dll
 C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\obj\Debug\NoteApp.UnitTests.pdb
+C:\Users\elini\source\repos\NoteApp\src\NoteApp.UnitTests\bin\Debug\TastData\ExpectedNoteApp.notes

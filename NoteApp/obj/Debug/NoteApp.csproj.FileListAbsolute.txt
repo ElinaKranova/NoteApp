@@ -7,3 +7,12 @@ C:\Users\elini\source\repos\NoteApp\src\src\NoteApp\obj\Debug\NoteApp.csproj.Cor
 C:\Users\elini\source\repos\NoteApp\src\src\NoteApp\obj\Debug\NoteApp.csproj.CopyComplete
 C:\Users\elini\source\repos\NoteApp\src\src\NoteApp\obj\Debug\NoteApp.dll
 C:\Users\elini\source\repos\NoteApp\src\src\NoteApp\obj\Debug\NoteApp.pdb
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\bin\Debug\NoteApp.dll
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\bin\Debug\NoteApp.pdb
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\obj\Debug\NoteApp.csproj.AssemblyReference.cache
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\obj\Debug\NoteApp.csproj.CoreCompileInputs.cache
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\obj\Debug\NoteApp.csproj.CopyComplete
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\obj\Debug\NoteApp.dll
+C:\Users\elini\source\repos\NoteApp\src\NoteApp\obj\Debug\NoteApp.pdb

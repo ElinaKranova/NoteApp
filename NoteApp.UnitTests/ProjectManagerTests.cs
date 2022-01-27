@@ -28,14 +28,15 @@ namespace ProjectTests
 			note1.Text = "dsa";
 			note1.Category = NoteCategory.Home;
 			example.Notes.Add(note1);
-			string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteAppTest";
+			var location = Assembly.GetExecutingAssembly().Location;
+			var folder = Path.GetDirectoryName(location);
+			folder += @"\TestData\";
 
 			//Act
-			ProjectManager.SaveData(example, path);
-			string fileName = path + "\\NoteAppTest";
+			ProjectManager.SaveData(example, folder + @"actualProject.json");
 
-            var expected = File.ReadAllText(fileName);
-            var actual = File.ReadAllText(fileName);
+            var expected = File.ReadAllText(folder + @"ExpectedNoteApp.notes");
+            var actual = File.ReadAllText(folder + @"actualProject.json");
             //Assert
             Assert.AreEqual(actual, expected, "Сравнение сериализатора ProjectManager и встроенного.");
 		}

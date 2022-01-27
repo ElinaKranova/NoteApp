@@ -140,7 +140,7 @@ namespace NoteAppUI
                 }
                 if (listBoxNote.Items.Count >= 1)
                 {
-                    listBoxNote.SetSelected(0, true);
+                    listBoxNote.SelectedIndex = 0;
                 }
             }
         }

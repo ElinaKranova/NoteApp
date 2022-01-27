@@ -53,7 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ExpectedNoteApp.notes">
+    <None Include="TastData\ExpectedNoteApp.notes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
